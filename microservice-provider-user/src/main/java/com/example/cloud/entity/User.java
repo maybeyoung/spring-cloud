@@ -21,6 +21,15 @@ public class User implements Serializable {
     @Column
     private BigDecimal balance;
 
+    public User() {
+        super();
+    }
+    public User(Long id,String username){
+        super();
+        this.id = id;
+        this.username = username;
+    }
+
     public Long getId() {
         return id;
     }

@@ -2,6 +2,11 @@ feign的坑：
       三个坑 1.@GetMapping不支持
              2.@PathVariable得设置value
              3.只要参数是复杂对象，即使制定了GET方法，feign依然会以POST方法进行发送请求
+      注意事项：
+            自定义配置时，@Configuration和@Component包不应重叠
+            @FeignClient所在的解决接口中，不支持@GetMapping等组合注解
+            使用@PathVariable时，需要指定其value
+            feign暂不支持复杂对象作为一个参数
 
 eureka:
    eureka.datacenter: cloud   #修改eureka页面里的System Status datacenter
