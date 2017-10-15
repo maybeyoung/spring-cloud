@@ -12,6 +12,6 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://user:password@localhost:8761/eureka
-eureka.datacenter: cloud
-eureka.environment: product
+eureka.datacenter: cloud   #修改eureka页面里的System Status datacenter
+eureka.environment: product #修改eureka页面里的System Status的显示environment
 

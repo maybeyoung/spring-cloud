@@ -32,7 +32,7 @@ eureka:
    #    enabled: true
   instance:       #  显示ip地址 默认是false
     prefer-ip-address: true
-    instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
    # metadata-map: #可以设置显示  有坑
    #     zone: ABC  #eureka可以理解的元数据，指定zone
    #     lilizhou: BBC #不会影响客户端行为
