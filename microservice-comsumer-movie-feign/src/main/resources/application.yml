@@ -1,0 +1,37 @@
+server:
+   port: 7901
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password@localhost:8761/eureka/
+    #healthcheck:   spring cloud Netflix 1.1 版本以后才行
+   #    enabled: true
+  instance:       #  显示ip地址 默认是false
+    prefer-ip-address: true
+spring:
+  application:
+    name: microservice-comsumer-movie-feign
+logging:
+  level:
+    #com.example.cloud.feign.UserFeignClient1: DEBUG
+    com.example.cloud.feign.UserFeignClient: DEBUG
+
+#timeout解决方法，由于内置的断路器hystrix默认为1秒引起的
+#feign:
+  # hystrix:
+  #     enabled: false.  禁止断路器 方法1
+# hystrix:
+    #command:
+      #default:
+        #execution:
+          #timeout:
+           #enabled: false    方法2
+
+# hystrix:
+    #command:
+      #default:
+        #execution:
+          #isolation:
+           #thread:
+            #timeoutInMilliseconds: 5000  方法2
+

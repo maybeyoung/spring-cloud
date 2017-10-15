@@ -1,0 +1,14 @@
+server:
+   port: 7901
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password@localhost:8761/eureka/
+    #healthcheck:   spring cloud Netflix 1.1 版本以后才行
+   #    enabled: true
+  instance:       #  显示ip地址 默认是false
+    prefer-ip-address: true
+spring:
+  application:
+    name: microservice-comsumer-movie  # 应用注册名，全部小写
+  #  instance-id: 可以设置显示

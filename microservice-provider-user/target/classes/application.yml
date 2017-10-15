@@ -1,0 +1,38 @@
+
+server:
+   port: 7900
+spring:
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: h2
+    schema: classpath:schema.sql
+    data: classpath:data.sql
+  application:
+    name: microservice-provider-user  # 应用注册名，全部小写
+logging:
+   level:
+     root: INFO
+     org.hibernate: INFO
+     org.hibernate.type.descriptor.sql.BasicBinder: TARCE
+     org.hibernate.type.descriptor.sql.BasicExtractor: TARCE
+     com.example: DEBUG
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://user:password@localhost:8761/eureka/
+    #availability-zones: #指定zone
+    #  beijing:  ABC
+    #region: beijing #beijing是region
+
+    #healthcheck:   健康监察spring cloud Netflix 1.1 版本以后才行
+   #    enabled: true
+  instance:       #  显示ip地址 默认是false
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+   # metadata-map: #可以设置显示  有坑
+   #     zone: ABC  #eureka可以理解的元数据，指定zone
+   #     lilizhou: BBC #不会影响客户端行为

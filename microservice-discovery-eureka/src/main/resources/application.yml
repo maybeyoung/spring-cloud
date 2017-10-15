@@ -1,0 +1,17 @@
+security: #认证设置
+  basic:
+    enabled: true
+  user:
+   name: user
+   password: password
+server:
+  port: 8761
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://user:password@localhost:8761/eureka
+eureka.datacenter: cloud   #修改eureka页面里的System Status datacenter
+eureka.environment: product #修改eureka页面里的System Status的显示environment
+
