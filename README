@@ -1,0 +1,4 @@
+feign的坑：
+      三个坑 1.@GetMapping不支持
+             2.@PathVariable得设置value
+             3.只要参数是复杂对象，即使制定了GET方法，feign依然会以POST方法进行发送请求
