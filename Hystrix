@@ -1,0 +1,39 @@
+
+
+雪崩效应
+
+解决方案：
+    1.超时机制
+    2.断路器模式
+
+   断路器要实现需要的些什么，题外话：
+      1.监控：总共请求多少次，有多少次失败 假设失败率达到10%%，断路器打开
+      2.断路器状态
+      3.分流
+      4.自我修复（断路器状态对的切换）
+      5.也需要超时机制
+
+启动项加@EnableCircuitBreaker
+
+方法加@HystrixCommand(fallbackMethod ="xxxx" )
+        返回的方法参数和返回值要和原方法一致
+
+
+#第一次请求直接进入fallback方法，由于hystrix默认为1秒引起的
+# hystrix:
+    #command:
+      #default:
+        #execution:
+          #timeout:
+           #enabled: false    方法1
+
+# hystrix:
+    #command:
+      #default:
+        #execution:
+          #isolation:
+           #thread:
+            #timeoutInMilliseconds: 5000  方法2
+
+@HystrixCommand(fallbackMethod = "findByidFallback", commandProperties = {@HystrixProperty(name="execution.isolation.strategy", value="SEMAPHORE")})
+和调用的方法会在一个线程里运行   value默认是THREAD

@@ -9,6 +9,8 @@
         <module name="microservice-comsumer-movie" />
         <module name="microservice-comsumer-movie-feign" />
         <module name="microservice-comsumer-movie-ribbon" />
+        <module name="microservice-comsumer-movie-ribbon-with-Hystrix" />
+        <module name="microservice-comsumer-movie-ribbon-with-Hystrix-propagation" />
         <module name="microservice-discovery-eureka" />
         <module name="microservice-discovery-eureka-ha" />
         <module name="microservice-provider-user" />
@@ -18,6 +20,8 @@
       <module name="microservice-comsumer-movie" target="1.8" />
       <module name="microservice-comsumer-movie-feign" target="1.8" />
       <module name="microservice-comsumer-movie-ribbon" target="1.8" />
+      <module name="microservice-comsumer-movie-ribbon-with-Hystrix" target="1.8" />
+      <module name="microservice-comsumer-movie-ribbon-with-Hystrix-propagation" target="1.8" />
       <module name="microservice-discovery-eureka" target="1.8" />
       <module name="microservice-discovery-eureka-ha" target="1.8" />
       <module name="microservice-provider-user" target="1.8" />

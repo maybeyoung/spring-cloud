@@ -28,6 +28,8 @@
 	   <module>microservice-comsumer-movie</module>
 	   <module>microservice-comsumer-movie-feign</module>
 	   <module>microservice-comsumer-movie-ribbon</module>
+	   <module>microservice-comsumer-movie-ribbon-with-Hystrix</module>
+	   <module>microservice-comsumer-movie-ribbon-with-Hystrix-propagation</module>
 		<module>microservice-discovery-eureka</module>
 		<module>microservice-discovery-eureka-ha</module>
 
