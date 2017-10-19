@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/microservice-comsumer-movie/microservice-comsumer-movie.iml" filepath="$PROJECT_DIR$/microservice-comsumer-movie/microservice-comsumer-movie.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-comsumer-movie-feign/microservice-comsumer-movie-feign.iml" filepath="$PROJECT_DIR$/microservice-comsumer-movie-feign/microservice-comsumer-movie-feign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservice-comsumer-movie-feign-with-Hystrix/microservice-comsumer-movie-feign-with-Hystrix.iml" filepath="$PROJECT_DIR$/microservice-comsumer-movie-feign-with-Hystrix/microservice-comsumer-movie-feign-with-Hystrix.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-comsumer-movie-ribbon/microservice-comsumer-movie-ribbon.iml" filepath="$PROJECT_DIR$/microservice-comsumer-movie-ribbon/microservice-comsumer-movie-ribbon.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-comsumer-movie-ribbon-with-Hystrix/microservice-comsumer-movie-ribbon-with-Hystrix.iml" filepath="$PROJECT_DIR$/microservice-comsumer-movie-ribbon-with-Hystrix/microservice-comsumer-movie-ribbon-with-Hystrix.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-comsumer-movie-ribbon-with-Hystrix-propagation/microservice-comsumer-movie-ribbon-with-Hystrix-propagation.iml" filepath="$PROJECT_DIR$/microservice-comsumer-movie-ribbon-with-Hystrix-propagation/microservice-comsumer-movie-ribbon-with-Hystrix-propagation.iml" />

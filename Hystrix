@@ -37,3 +37,26 @@
 
 @HystrixCommand(fallbackMethod = "findByidFallback", commandProperties = {@HystrixProperty(name="execution.isolation.strategy", value="SEMAPHORE")})
 和调用的方法会在一个线程里运行   value默认是THREAD
+
+要使用/health必须加入下面这个依赖
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+../hystrix.stream 监控
+
+feign使用hystrix 的fallback
+在接口加上@FeignClient(name="xxxx",fallback = HystrixClientFallback.class)
+HystrixClientFallback必须继承这个接口，还要加@Component注解
+
+禁用单个feignClient的hystrix
+在自定义配置里加这个方法，@FeignClient(name="microservice-provider-user",configuration = Feign3Configuration.class,fallback = HystrixClientFallback.class)
+@Configuration
+public class Feign3Configuration {
+    @Bean
+	@Scope("prototype")
+	public Feign.Builder feignBuilder() {
+		return Feign.builder();
+	}
+}

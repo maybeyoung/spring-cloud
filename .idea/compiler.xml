@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="microservice-comsumer-movie" />
         <module name="microservice-comsumer-movie-feign" />
+        <module name="microservice-comsumer-movie-feign-with-Hystrix" />
         <module name="microservice-comsumer-movie-ribbon" />
         <module name="microservice-comsumer-movie-ribbon-with-Hystrix" />
         <module name="microservice-comsumer-movie-ribbon-with-Hystrix-propagation" />
@@ -19,6 +20,7 @@
     <bytecodeTargetLevel>
       <module name="microservice-comsumer-movie" target="1.8" />
       <module name="microservice-comsumer-movie-feign" target="1.8" />
+      <module name="microservice-comsumer-movie-feign-with-Hystrix" target="1.8" />
       <module name="microservice-comsumer-movie-ribbon" target="1.8" />
       <module name="microservice-comsumer-movie-ribbon-with-Hystrix" target="1.8" />
       <module name="microservice-comsumer-movie-ribbon-with-Hystrix-propagation" target="1.8" />

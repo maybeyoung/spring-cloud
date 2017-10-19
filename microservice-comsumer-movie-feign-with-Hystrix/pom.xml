@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example.cloud</groupId>
-	<artifactId>microservice-comsumer-movie-ribbon-with-Hystrix</artifactId>
+	<artifactId>microservice-comsumer-movie-feign-with-Hystrix</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>microservice-comsumer-movie-ribbon-with-Hystrix</name>
+	<name>microservice-comsumer-movie-feign-with-Hystrix</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -41,15 +41,14 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-hystrix</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
