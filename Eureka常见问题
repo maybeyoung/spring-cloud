@@ -1,0 +1,75 @@
+
+指定Eureka的DataCenter
+eureka.datacenter: 指定数据中心
+eureka.datacenter: cloud   #修改eureka页面里的System Status datacenter
+
+指定Eureka的Environment
+eureka.environment: 指定环境
+eureka.environment: product #修改eureka页面里的System Status的显示environment
+
+如何加身份认证？
+
+服务端需要导入security这个包
+<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+ 再在application.yml中增加
+ security: #认证设置
+   basic:
+     enabled: true
+   user:
+    name: user
+    password: password
+ eureka:
+   client:
+     service-url:
+       defaultZone: http://user:password@localhost:8761/eureka
+
+客户端
+ eureka:
+   client:
+     serviceUrl:
+       defaultZone: http://user:password@localhost:8761/eureka/
+
+
+如何解决Eureka注册服务慢的问题？
+
+eureka.instance.leaseRenewalIntervalInSeconds
+
+作为实例还涉及到与注册中心的周期性心跳，默认持续时间为30秒（通过serviceUrl）。在实例、服务器、客户端都在本地缓存中具有相同的元数据之前，
+服务不可用于客户端发现（所以可能需要3次心跳）。你可以使用eureka.instance.leaseRenewalIntervalInSeconds 配置，这将加快客户端连接到其他
+服务的过程。在生产中，最好坚持使用默认值，因为在服务器内部有一些计算，他们对续约做出假设。
+
+Eureka的自我保护模式：
+如果在Eureka Server的首页看到以下这段提示，则说明Eureka已经进入了保护模式。
+EMERGENCY! EUREKA MAY BE INCORRECTLY CLAIMING INSTANCES ARE UP WHEN THEY'RE NOT. RENEWALS ARE LESSER THAN THRESHOLD AND HENCE THE INSTANCES ARE NOT BEING EXPIRED JUST TO BE SAFE.
+保护模式主要用于一组客户端和Eureka Server之间存在网络分区场景下的保护。
+一旦进入保护模式，Eureka Server将会尝试保护其服务注册表中的信息，
+不再删除服务注册表中的数据（也就是不会注销任何微服务）。
+
+如何解决Eureka Server不踢出已关停的节点的问题？
+在开发过程中，我们常常希望Eureka Server能够迅速有效地踢出已关停的节点，
+但是新手由于Eureka自我保护模式，以及心跳周期长的原因，常常会遇到Eureka Server不踢出已关停的节点的问题。解决方法如下：
+(1) Eureka Server端：配置关闭自我保护，并按需配置Eureka Server清理无效节点的时间间隔。
+    eureka.server.enable-self-preservation			# 设为false，关闭自我保护
+    eureka.server.eviction-interval-timer-in-ms     # 清理间隔（单位毫秒，默认是60*1000）
+(2) Eureka Client端：配置开启健康检查，并按需配置续约更新时间和到期时间。
+    eureka.client.healthcheck.enabled			# 开启健康检查（需要spring-boot-starter-actuator依赖）
+    eureka.instance.lease-renewal-interval-in-seconds		# 续约更新时间间隔（默认30秒）
+    eureka.instance.lease-expiration-duration-in-seconds 	# 续约到期时间（默认90秒）
+注意：
+更改Eureka更新频率将打破服务器的自我保护功能，生产环境下不建议自定义这些配置。
+
+如何自定义Eureka的Instance ID？
+在Spring Cloud中，服务的Instance ID的默认值是${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}} ，也就是机器主机名:应用名称:应用端口
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}        # 将Instance ID设置成IP:端口的形式
+
+注意点：eureka.client.healthcheck.enabled=true配置项必须设置在application.yml中
+eureka.client.healthcheck.enabled=true 只应该在application.yml中设置。如果设置在bootstrap.yml中将会导致一些不良的副作用，例如在Eureka中注册的应用名称是UNKNOWN等。
