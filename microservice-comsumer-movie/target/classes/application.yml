@@ -11,4 +11,4 @@ eureka:
 spring:
   application:
     name: microservice-comsumer-movie  # 应用注册名，全部小写
-  #  instance-id: 可以设置显示
+  #  instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}

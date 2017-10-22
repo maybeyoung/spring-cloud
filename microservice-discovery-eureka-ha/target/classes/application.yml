@@ -1,4 +1,4 @@
-
+ #高可用配置
 spring:
   application:
     name:  EUREKA-HA

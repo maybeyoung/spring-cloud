@@ -16,8 +16,22 @@ logging:
     #com.example.cloud.feign.UserFeignClient1: DEBUG
     com.example.cloud.feign.UserFeignClient: DEBUG
 
-feign:
-   hystrix:
-       enabled: false.
+#timeout解决方法，由于内置的断路器hystrix默认为1秒引起的
+#feign:
+  # hystrix:
+  #     enabled: false.  禁止断路器 方法1
+# hystrix:
+    #command:
+      #default:
+        #execution:
+          #timeout:
+           #enabled: false    方法2
 
+# hystrix:
+    #command:
+      #default:
+        #execution:
+          #isolation:
+           #thread:
+            #timeoutInMilliseconds: 5000  方法2
 

@@ -60,3 +60,5 @@ public class Feign3Configuration {
 		return Feign.builder();
 	}
 }
+
+fallbackFactory 不能与fallback放在一起
