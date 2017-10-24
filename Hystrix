@@ -62,3 +62,26 @@ public class Feign3Configuration {
 }
 
 fallbackFactory 不能与fallback放在一起
+
+dashboard 监控一个
+
+Turbine 可以监控一个集群
+
+turbine:
+  aggregator:  #请求地址为http://my.turbine.sever:8080/turbine.stream?cluster=CUSTOMERS
+    clusterConfig: CUSTOMERS //这个要写spring.application.name的名称
+  appConfig: customers #集群项目名称
+-------------
+turbine:
+  aggregator:
+    clusterConfig: default #写这个地址后面就不用跟?后面的，http://my.turbine.sever:8080/turbine.stream
+  appConfig:  microservice-comsumer-movie-ribbon-with-Hystrix #要监控的集群
+  clusterNameExpression: "'default'"
+
+如果server配置了context-path
+ 例如  server:
+         context-path: /ribbon
+ 那需要配置eureka.instance.home-page-url-path
+       eureka:
+         instance:
+           home-page-url-path: /ribbon
