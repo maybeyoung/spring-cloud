@@ -1,0 +1,45 @@
+@EnableZuulProxy
+这个注释已经包含了@EnableEurekaClient
+
+不要忘了发现的client包 例如Eureka的
+      <dependency>
+           <groupId>org.springframework.cloud</groupId>
+             <artifactId>spring-cloud-starter-eureka</artifactId>
+         </dependency>
+
+zuul:
+   ignoredServices: '*' 所有微服务都不代理 除了下面写的这个
+   ignoredServices: 微服务名 多个用，间隔  不代理写的这些
+   routes:
+     microservice-provider-user: /user/** #前面是代理应用的名称 后面你想指定的地址
+
+ zuul: #更细粒度的写法
+  routes:
+    users: #随便取名字，唯一就行
+      path: /user/** #你想要指定的地址名字 一个*只能匹配一个级别，例如/user/x，两个*就可以分层匹配
+      serviceId: users_service   #注册在eureka上的微服务名
+
+ zuul: #另一种的写法
+  routes:
+    users: #随便取名字，唯一就行
+      path: /user/**
+      url: http://example.com/users_service #指定地址
+
+这些简单的URL路由不会被执行，HystrixCommand也不能使用功能区来对多个URL进行负载平衡。
+要实现这一点，请指定一个服务路由并为serviceId配置Ribbon客户端
+（目前需要在Ribbon中禁用Eureka支持）,例子如下
+ ------------
+ zuul:
+   routes:
+     abc: #随便取名字，唯一就行
+       path: /myusers/**
+       serviceId: users
+
+ ribbon:
+   eureka:
+     enabled: false
+
+ users:  #这边是微服务的serviceId
+   ribbon:
+     listOfServers: example.com,google.com
+------------------

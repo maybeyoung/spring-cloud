@@ -85,3 +85,9 @@ turbine:
        eureka:
          instance:
            home-page-url-path: /ribbon
+
+查看日志turbine监控日志
+logging:
+    level:
+      root: INFO
+      com.netflix.turbine.monitor: DEBUG

@@ -1,0 +1,20 @@
+
+server:
+  port: 8740
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:password@localhost:8761/eureka
+  instance:       #  显示ip地址 默认是false
+      prefer-ip-address: true
+      instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
+spring:
+  application:
+    name: microservice-gateway-zuul
+
+zuul:
+   #ignoredServices: '*' 所有微服务都不代理 除了下面写的这个
+   #ignoredServices: 微服务名 多个用，间隔  不代理写的这些
+  routes:
+    microservice-provider-user: /user/** #前面是代理应用的名称 后面你想指定的地址
+
